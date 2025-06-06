@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+
+<!-- ANCHORPANE FOR EVERYTHING -->
+
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="403.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.lu.ics.controllers.EmployeeViewController">
+   <children>
+
+      <!-- VBOX FOR NAVIGATION -->
+      <VBox prefHeight="403.0" prefWidth="102.0" style="-fx-background-color: #253538;">
+         <children>
+            <ImageView fitHeight="90.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true">
+               <!-- AB Logo image --> 
+               <image>
+                  <Image url="@../graphics/ABLogo.png" />
+               </image>
+            </ImageView>
+            <!-- HOME BUTTON -->
+            <StackPane fx:id="stackPaneHome" alignment="CENTER_LEFT" onMouseClicked="#handleHomeClick" style="-fx-background-color: #364d52;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="TOP" prefHeight="29.0" prefWidth="102.0" text="Home" textFill="WHITE">
+                     <font>
+                        <Font name="Helvetica Light" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <!-- PROJECTS BUTTON -->
+            <StackPane fx:id="stackPaneProjects" layoutY="50.0" onMouseClicked="#handleProjectsClick" style="-fx-background-color: #364d52;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="102.0" text="Projects" textFill="WHITE">
+                     <font>
+                        <Font name="Helvetica Light" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <!-- MILESTONES BUTTON -->
+            <StackPane fx:id="stackPaneMilestones" onMouseClicked="#handleMilestonesClick" style="-fx-background-color: #364d52;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="102.0" text="Milestones" textFill="WHITE">
+                     <font>
+                        <Font name="Helvetica Light" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <!-- CONSULTANTS BUTTON -->
+            <StackPane fx:id="stackPaneConsultants" onMouseClicked="#handleConsultantsClick" style="-fx-background-color: #2d4145;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="102.0" text="Consultants" textFill="WHITE">
+                     <font>
+                        <Font name="Helvetica Light" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <!-- WORK BUTTON -->
+            <StackPane fx:id="stackPaneWork" onMouseClicked="#handleWorkClick" style="-fx-background-color: #364d52;">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="102.0" text="Work" textFill="WHITE">
+                     <font>
+                        <Font name="Helvetica Light" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+
+      <!-- TABLEVIEW FOR SHOWING DATA FROM EMPLOYEES -->
+      <TableView fx:id="tableViewDataShow" layoutX="102.0" layoutY="65.0" prefHeight="272.0" prefWidth="584.0">
+         <columns>
+            <TableColumn fx:id="columnEmployeeID" prefWidth="74.66667938232422" text="EmployeeID" />
+            <TableColumn fx:id="columnFirstName" prefWidth="87.33329772949219" text="First Name" />
+            <TableColumn fx:id="columnLastName" prefWidth="88.6666259765625" text="Last Name" />
+            <TableColumn fx:id="columnTitle" minWidth="0.0" prefWidth="169.99996948242188" text="Title" />
+            <TableColumn fx:id="columnAddress" prefWidth="168.0" text="Address" />
+         </columns>
+      </TableView>
+
+      <HBox fx:id="hBoxConsultantSearch" alignment="CENTER" layoutX="101.0" layoutY="-1.0" prefHeight="66.0" prefWidth="585.0" style="-fx-background-color: #253538;">
+         <children>
+            <!-- COMBOBOX FOR SELECTING CONSULTANTS IN SPECIFIC PROJECT -->
+            <ComboBox fx:id="comboBoxProject" prefHeight="26.0" prefWidth="103.0" promptText="Projects" style="-fx-background-color: #f8f5f5;">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </ComboBox>
+            <!--COMBOBOX FOR SEARCHING EITHER EMPLOYEE ID OR TITLE-->
+            <ComboBox fx:id="comboBoxOption" prefHeight="25.0" prefWidth="141.0" promptText="Choose an option" style="-fx-background-color: #f8f5f5;" />
+            <TextField fx:id="searchFieldEmployee" prefHeight="26.0" prefWidth="135.0" promptText="Search ...">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="searchButton" mnemonicParsing="false" onAction="#handleSearchButton" style="-fx-background-color: #f8f5f5;" text="Search" />
+         </children>
+      </HBox>
+
+      <!-- HBOX FOR ADDING OR DELETING NEW OBJECTS + RESPONSE LABEL -->
+      <HBox fx:id="hBoxResponsePart" alignment="CENTER" layoutX="102.0" layoutY="337.0" prefHeight="66.0" prefWidth="584.0" style="-fx-background-color: #253538;">
+         <children>
+            <Button fx:id="buttonAddNew" mnemonicParsing="false" onAction="#handleButtonAddNew" prefHeight="26.0" prefWidth="96.0" style="-fx-background-color: #f8f5f5;" text="+ Add New" />
+            <Label fx:id="responseLabelEmployee" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="319.0" text="Response Label" textFill="#f8f5f5" />
+            <Button fx:id="editEmployeeButton" mnemonicParsing="false" onAction="#handleButtonEdit" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: #f8f5f5;" text="Edit">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></Button>
+            <Button fx:id="deleteEmployeeButton" mnemonicParsing="false" onAction="#handleButtonRemove" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: #f8f5f5;" text="Delete" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
